@@ -1,51 +1,119 @@
-<!DOCTYPE html>
-<html>
-<body style="background-color:cyan">
+//- Google Fonts
+$font-google-primary: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap';
+$font-google-secondary: 'https://fonts.googleapis.com/css2?family=Montserrat&display=swap';
 
-<ol>
-    <li><div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-        <div class="flex-grow-1">
-            <h3 class="mb-0">Graphical Models</h3>
-            <div class="subheading mb-3">Supervisor : Dr.Arindam Chatterjee</div>
-            <p>Ongoing project , details to be updated after completion.</p>
-        </div>
-        <div class="flex-shrink-0"><span class="text-primary">Summer 2022</span></div>
-    </div></li>
-<li><div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-    <div class="flex-grow-1">
-        <h3 class="mb-0">A Comparison Between Different Classification Tecniques</h3>
-        <div class="subheading mb-3">Supervisor : Dr.Deepayan Sarkar</div>
-        <p>This was done during our "Multivariate Analysis" coursework in the 1st Year of M.Stat in ISI.Here we illustrated the working principles of Support Vector Machines (SVM),K Nearest Neighbours (KNN) Algorithm, Linear Discriminant Analysis(LDA) and Quadratic Discriminant Analysis(QDA) to solve classification problems.We artificially created different types of data and compared the above mentioned methods to see their advantages and disadvantages in different situations.Finally an application on real life dataset was done.</p>
-    </div>
-    <div class="flex-shrink-0"><span class="text-primary">June 2022</span></div>
-</div></li>
+//- @type List
+$abril-fatface: 'Abril Fatface', cursive;
+$montserrat: 'Montserrat', sans-serif;
 
-<li><div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-    <div class="flex-grow-1">
-        <h3 class="mb-0">A Study on Kernel Density Estimation</h3>
-        <div class="subheading mb-3">Supervisor : Dr.Isha Dewan </div>
-        <p>We did this project while our "Nonparametric Inference and Sequential Methods" coursework of M.Stat 1st year in ISI.A detailed review of the available literature on Kernel Density estimation was done.Lot of simulations were performed to verify and justify the theoritical results and understand the underlying mechanisn how KDE actually works.</p>
-    </div>
-    <div class="flex-shrink-0"><span class="text-primary">May 2022</span></div>
-</div></li>
-<li><div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-    <div class="flex-grow-1">
-        <h3 class="mb-0">Analysis of Petrol Consumption Data</h3>
-        <div class="subheading mb-3">Supervisor : Dr.Swagata Nandi</div>
-        <p>This was done as a part of our "Regression Techniques" coursework of M.Stat 1st year in ISI.Regression diagnostics like model adqueacy checking,outlier detection,selecting the best subset of explanatory variables are the key techniques used in this project.</p>
-    </div>
-    <div class="flex-shrink-0"><span class="text-primary">December 2021</span></div>
-</div></li>
+//- Typography
+$base-font-family: $montserrat;
+$heading-font-family: $abril-fatface;
 
-<li><div class="d-flex flex-column flex-md-row justify-content-between">
-    <div class="flex-grow-1">
-        <h3 class="mb-0">Modelling the Number of Goals in UEFA Champions' League</h3>
-        <div class="subheading mb-3">Supervisor : Dr.Ayan Chandra </div>
-        <p>This was done as my dissertation paper in the 6th semester of B.Sc Statistics Hons at St.Xavier's College, Kolkata.The main idea was to build a simplemathematical model for the number of goals scored in each season of UEFA Champions' League which can be further used for forecasting.It was mainly an application of Time Series Analysis.</p>
-    </div>
-    <div class="flex-shrink-0"><span class="text-primary">November 2019 - March 2020</span></div>
-</div>
-</div></li>
-</ol>
-</body>
-</html>
+$font-size-small: 0.875em;
+
+/*- Screen Sizes*/
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+/* COLOR HEX */
+$cadet: #4f6d7aff;
+$maximum-blue: #5ea5b8ff;
+$columbia-blue: #c0d6dfff;
+$platinum: #eaeaeaff;
+$cultured: #f3f3f3ff;
+$nero: #444444;
+
+/* COLOR Gradient */
+$dl-gradient-right: linear-gradient(90deg, rgba(0,0,0,0.04) 20%, rgba(255,255,255,0) 0%);
+
+$body-background-color: $platinum;
+$body-text-color: $nero;
+
+//- Global Functions
+/*import fonts*/
+@if variable-exists(font-google-primary) {
+  @import url($font-google-primary);
+}
+@if variable-exists(font-google-secondary) {
+  @import url($font-google-secondary);
+}
+
+//- Global Mixins
+
+/*media queries*/
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+    background-color: $body-background-color;
+    font-family: $base-font-family;
+    font-size: $font-size-small;
+    color: $body-text-color;
+    line-height: 1.5;
+}
+.dl-blurbs {
+	display: grid;
+	@include tablet-up {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2vw;
+	}
+}
+/* LIST */
+dl {
+  counter-reset: count;
+	background: $dl-gradient-right;
+	padding-left: 4vw; //default is smartphone
+	padding-right: 4vw;
+	margin: 0;
+	@include tablet-up {padding-left: 2vw;}
+	@include desktop {
+		padding-top: 3vw;
+		padding-bottom: 3vw;
+	}
+	
+}
+dl + dl {
+	counter-reset: counter 4;
+}
+dt {
+  counter-increment: count;
+	color: $cadet;
+	font-family: $base-font-family;
+	font-size: 4vw;
+	text-transform: uppercase;
+}
+dt::before {
+  content: counter(count, decimal-leading-zero)".";
+	font-family: $heading-font-family;
+	color: $maximum-blue;
+	margin-left: -1vw;
+	padding-right: 12px;
+}
+
+dd {
+	margin-left: 5vw;
+	margin-bottom: 2vh;
+}
